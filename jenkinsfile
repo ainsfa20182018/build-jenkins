@@ -1,0 +1,19 @@
+node("master"){
+  stage('pull the code'){
+    git url: "https://github.com/ainsfa20182018/build-jenkins.git"
+  }
+  stage('Build'){
+    acirustech = docker.build("daudmuhudin/acirustech")
+  }
+  stage('Units'){
+    acirustech.inside("""
+    #!/bin/bash
+    ls /app/rewuirements.txt
+    ls /app/app.py
+    ls /app/templates/
+    """)
+  }
+  stage('deploy'){
+
+  }
+}
